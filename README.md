@@ -8,7 +8,8 @@ To view the html in your browser, follow these steps:
 
 1. Configure the database 
 2. Change the appropriate variables in mysql.connector
-    ```mydb = mysql.connector.connect(
+    ```
+    mydb = mysql.connector.connect(
         host="localhost",
         user="root",
         passwd=<your_password>, 
