@@ -52,7 +52,7 @@ def get_num_unique(hash):
     return result
 
 def get_user(challenge_hash):
-    command = 'SELECT encrypted_user_hash FROM temp_dump WHERE encrypted_challenge_id_hash="'+challenge_hash+'"'
+    command = 'SELECT DISTINCT(encrypted_user_hash) FROM temp_dump WHERE encrypted_challenge_id_hash="'+challenge_hash+'"'
     mycursor.execute(command)
     result = mycursor.fetchall()
     return result
