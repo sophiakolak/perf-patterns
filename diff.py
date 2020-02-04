@@ -1,5 +1,6 @@
 import mysql.connector 
 import difflib
+from tabulate import tabulate
 import sys
 import os.path
 from os import path
@@ -83,10 +84,11 @@ def main():
                 new_lang = code_versions[i][2]
                 solved_before = str(code_versions[i-1][3])
                 solved_after = str(code_versions[i][3])
-                print(difflib.HtmlDiff().make_file(StringIO(old).readlines(), StringIO(new).readlines()))
-                print("<p> old score: "+old_score+ "    new score: "+new_score+ "</p>")
-                print("<p> old_lang:   "+old_lang+"    new_lang: "+new_lang+"</p>")
-                print("<p> solved_before? "+solved_before+"    solved_after? "+solved_after+"</p>")
+                table = [['old_score', old_score],['new_score', new_score],['old_lang', old_lang],['new_lang', new_lang],['solved_before', solved_before],['solved_after', solved_after]]
+                print(tabulate(table, tablefmt='html'))
+                a = difflib.HtmlDiff(wrapcolumn=90)
+                b = a.make_file(StringIO(old).readlines(), StringIO(new).readlines()) 
+                print(b)
         print("<p> END USER", user[0], "\n </p>")
         
 
